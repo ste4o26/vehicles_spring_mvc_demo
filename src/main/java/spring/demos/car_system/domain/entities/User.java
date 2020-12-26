@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import spring.demos.car_system.domain.entities.enums.Role;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -25,7 +23,7 @@ public class User extends BaseEntity {
 
     @NotNull
     @Size(max = 60)
-    @Column(name = "username", length = 60, nullable = false)
+    @Column(name = "username", length = 60, nullable = false, unique = true)
     private String username;
 
     //TODO add pattern validation for the password
@@ -48,8 +46,8 @@ public class User extends BaseEntity {
     @Column(name = "active")
     private boolean active;
 
-    @OneToMany(targetEntity = UserRole.class, mappedBy = "user")
-    private Set<UserRole> roles;
+    @ElementCollection
+    private Set<Role> roles;
 
     @Column(name = "image_url")
     private String imageUrl;
@@ -63,4 +61,11 @@ public class User extends BaseEntity {
     @PastOrPresent
     @Column(name = "modified")
     private LocalDateTime modified;
+
+    public User(String username, String password, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

@@ -1,9 +1,6 @@
 package spring.demos.car_system.domain.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import spring.demos.car_system.domain.entities.enums.Category;
 
 import javax.persistence.*;
@@ -16,7 +13,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 public class Model extends BaseEntity{
 
     @NotNull
@@ -24,8 +20,9 @@ public class Model extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @NotNull
     @Size(max = 40)
-    @Column(name = "name", length = 40)
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
 
     @Size(max = 512)
@@ -45,8 +42,15 @@ public class Model extends BaseEntity{
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    //uni direction relationship!
     @ManyToOne(targetEntity = Brand.class)
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand brand;
+
+    public Model(String name, Category category, Integer startYear, Integer endYear, String imageUrl) {
+        this.name = name;
+        this.category = category;
+        this.startYear = startYear;
+        this.endYear = endYear;
+        this.imageUrl = imageUrl;
+    }
 }
