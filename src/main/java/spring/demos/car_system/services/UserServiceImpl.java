@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import spring.demos.car_system.domain.entities.User;
-import spring.demos.car_system.domain.entities.enums.Role;
+import spring.demos.car_system.domain.enums.Role;
 import spring.demos.car_system.repositories.UserRepository;
 import spring.demos.car_system.services.interfaces.UserService;
 import spring.demos.car_system.init.ErrorMessage;

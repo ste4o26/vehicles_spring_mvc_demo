@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ModelService {
     //TODO ADD METHODS AND CREATE AN IMPLEMENTATION
-//    List<Model> getAllModelsByBrandName();
+    List<Model> getAllModels();
 
     Model getModelByName(String name);
 

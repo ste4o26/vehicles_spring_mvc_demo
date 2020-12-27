@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import spring.demos.car_system.domain.entities.enums.Category;
-import spring.demos.car_system.domain.entities.enums.Engine;
-import spring.demos.car_system.domain.entities.enums.Transmission;
+import spring.demos.car_system.domain.enums.Category;
+import spring.demos.car_system.domain.enums.Engine;
+import spring.demos.car_system.domain.enums.Transmission;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity(name = "offers")
@@ -45,7 +44,7 @@ public class Offer extends BaseEntity {
 
     @NotNull
     @Column(name = "mile_age")
-    private Integer mileAge;
+    private Integer mileage;
 
     @NotNull
     @Column(name = "price")
@@ -58,7 +57,6 @@ public class Offer extends BaseEntity {
 
     @NotNull
     @Column(name = "year")
-    @PastOrPresent//may not work correctly with integer!!!
     @Min(1900)
     private Integer year;
 

@@ -1,4 +1,4 @@
-package spring.demos.car_system.domain.entities.enums;
+package spring.demos.car_system.domain.enums;
 
 public enum Role {
     ROOT_ADMIN,

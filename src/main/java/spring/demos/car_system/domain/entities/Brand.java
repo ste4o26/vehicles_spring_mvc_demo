@@ -1,14 +1,8 @@
 package spring.demos.car_system.domain.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -38,7 +32,8 @@ public class Brand extends BaseEntity{
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    @OneToMany(targetEntity = Model.class, mappedBy = "brand")
+    @ToString.Exclude
+    @OneToMany(targetEntity = Model.class, mappedBy = "brand", fetch = FetchType.EAGER)
     private Set<Model> models;
 
     public Brand(String name) {

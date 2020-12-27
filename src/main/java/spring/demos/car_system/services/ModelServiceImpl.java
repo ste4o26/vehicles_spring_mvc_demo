@@ -1,10 +1,11 @@
 package spring.demos.car_system.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import spring.demos.car_system.domain.entities.Brand;
 import spring.demos.car_system.domain.entities.Model;
-import spring.demos.car_system.domain.entities.enums.Category;
+import spring.demos.car_system.domain.enums.Category;
 import spring.demos.car_system.repositories.BrandRepository;
 import spring.demos.car_system.repositories.ModelRepository;
 import spring.demos.car_system.services.interfaces.ModelService;
@@ -13,6 +14,7 @@ import spring.demos.car_system.init.ErrorMessage;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -24,6 +26,12 @@ public class ModelServiceImpl implements ModelService {
     public ModelServiceImpl(ModelRepository modelRepository, BrandRepository brandRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
+    }
+
+
+    @Override
+    public List<Model> getAllModels() {
+        return this.modelRepository.findAll(Sort.by("name"));
     }
 
     @Override

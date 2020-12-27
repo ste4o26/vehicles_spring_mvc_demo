@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import spring.demos.car_system.domain.entities.enums.Role;
+import spring.demos.car_system.domain.enums.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -46,7 +46,7 @@ public class User extends BaseEntity {
     @Column(name = "active")
     private boolean active;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Column(name = "image_url")
@@ -61,11 +61,4 @@ public class User extends BaseEntity {
     @PastOrPresent
     @Column(name = "modified")
     private LocalDateTime modified;
-
-    public User(String username, String password, String firstName, String lastName) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }

@@ -1,7 +1,8 @@
 package spring.demos.car_system.services.interfaces;
 
+import spring.demos.car_system.domain.binding_models.OfferCreateDto;
 import spring.demos.car_system.domain.entities.Offer;
-import spring.demos.car_system.domain.entities.enums.Category;
+import spring.demos.car_system.domain.enums.Category;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ public interface OfferService {
 
     Offer getOfferById(Long id);
 
-    Offer createOffer(Offer offer);
+    Offer createOffer(OfferCreateDto offer);
 
-    Offer updateOffer(Offer offer);
+    Offer updateOffer(OfferCreateDto offer);
 
     Offer deleteOffer(Long id);
 }

@@ -1,7 +1,7 @@
 package spring.demos.car_system.domain.entities;
 
 import lombok.*;
-import spring.demos.car_system.domain.entities.enums.Category;
+import spring.demos.car_system.domain.enums.Category;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 public class Model extends BaseEntity{
 
     @NotNull
@@ -42,7 +43,7 @@ public class Model extends BaseEntity{
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    @ManyToOne(targetEntity = Brand.class)
+    @ManyToOne(targetEntity = Brand.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand brand;
 
